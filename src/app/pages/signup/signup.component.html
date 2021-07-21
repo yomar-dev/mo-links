@@ -5,26 +5,47 @@
     <img src="assets/logo.svg" alt="links logo" class="logo__img" />
   </figure>
 
-  <form class="form">
+  <form class="form" [formGroup]="signupForm" (ngSubmit)="registerUser()">
     <h2 class="form__title">Signup</h2>
 
     <div class="form__control">
       <label class="form__label">Full name</label>
-      <input type="text" class="form__input" placeholder="Enter full name" />
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Enter full name"
+        formControlName="name"
+      />
     </div>
 
     <div class="form__control">
       <label class="form__label">Your Email</label>
-      <input type="email" class="form__input" placeholder="Enter email" />
+      <input
+        type="email"
+        class="form__input"
+        placeholder="Enter email"
+        formControlName="email"
+      />
     </div>
 
     <div class="form__control">
       <label class="form__label">Password</label>
-      <input type="password" class="form__input" placeholder="***********" />
+      <input
+        type="password"
+        class="form__input"
+        placeholder="***********"
+        formControlName="password"
+      />
     </div>
 
     <div class="form__control">
-      <button class="form__btn">Signup</button>
+      <button
+        class="form__btn"
+        [disabled]="!signupForm.valid"
+        [class.form__btn--disabled]="!signupForm.valid"
+      >
+        Signup
+      </button>
     </div>
   </form>
 </main>
