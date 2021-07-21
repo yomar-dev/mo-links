@@ -1,1 +1,67 @@
-<p>dashboard works!</p>
+<main class="dashboard">
+  <button class="btn-link btn-link--static">Logout</button>
+
+  <figure class="logo">
+    <img src="assets/logo.svg" alt="links logo" class="logo__img" />
+  </figure>
+
+  <div class="dashboard-content">
+    <figure class="user-info">
+      <img src="assets/avatar.png" class="user-info__img" alt="user avatar" />
+      <figcaption class="user-info__details">
+        <span class="user-info__name">Jeff Brown</span>
+        <span class="user-info__email">jeff.brown@example.com</span>
+      </figcaption>
+    </figure>
+
+    <section class="user-links">
+      <form
+        class="dashboard-form"
+        [formGroup]="linksForm"
+        (ngSubmit)="registerLink()"
+      >
+        <div class="dashboard-form__control">
+          <label class="dashboard-form__label">Url To Save</label>
+          <input
+            type="url"
+            class="dashboard-form__input"
+            placeholder="Enter a URL"
+            formControlName="url"
+          />
+        </div>
+
+        <div class="dashboard-form__control">
+          <label class="dashboard-form__label">Name of Url</label>
+          <input
+            type="text"
+            class="dashboard-form__input"
+            placeholder="Enter a description"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="dashboard-form__control">
+          <button
+            class="dashboard-form__btn"
+            [disabled]="!linksForm.valid"
+            [class.dashboard-form__btn--disabled]="!linksForm.valid"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+
+      <div class="link-card">
+        <h2 class="link-card__header">www.url.com</h2>
+        <p class="link-card__content">
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui
+          blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
+          et quas molestias excepturi sint.
+        </p>
+        <button class="link-card__btn-delete">
+          <img src="assets/trash.png" alt="trash icon" />
+        </button>
+      </div>
+    </section>
+  </div>
+</main>
