@@ -1,5 +1,5 @@
 <main class="dashboard">
-  <button class="btn-link btn-link--static">Logout</button>
+  <button class="btn-link btn-link--static" (click)="logout()">Logout</button>
 
   <figure class="logo">
     <img src="assets/logo.svg" alt="links logo" class="logo__img" />
@@ -7,10 +7,14 @@
 
   <div class="dashboard-content">
     <figure class="user-info">
-      <img src="assets/avatar.png" class="user-info__img" alt="user avatar" />
+      <img
+        [src]="user?.avatar || defaultAvatar"
+        class="user-info__img"
+        alt="user avatar"
+      />
       <figcaption class="user-info__details">
-        <span class="user-info__name">Jeff Brown</span>
-        <span class="user-info__email">jeff.brown@example.com</span>
+        <span class="user-info__name">{{ user?.name || "" }}</span>
+        <span class="user-info__email">{{ user?.email || "" }}</span>
       </figcaption>
     </figure>
 
@@ -35,7 +39,7 @@
           <input
             type="text"
             class="dashboard-form__input"
-            placeholder="Enter a description"
+            placeholder="Enter URL name"
             formControlName="name"
           />
         </div>
@@ -43,22 +47,18 @@
         <div class="dashboard-form__control">
           <button
             class="dashboard-form__btn"
-            [disabled]="!linksForm.valid"
             [class.dashboard-form__btn--disabled]="!linksForm.valid"
+            [disabled]="!linksForm.valid"
           >
             Add
           </button>
         </div>
       </form>
 
-      <div class="link-card">
-        <h2 class="link-card__header">www.url.com</h2>
-        <p class="link-card__content">
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-          et quas molestias excepturi sint.
-        </p>
-        <button class="link-card__btn-delete">
+      <div class="link-card" *ngFor="let link of links">
+        <h2 class="link-card__header">{{ link.url }}</h2>
+        <p class="link-card__content">{{ link.name }}</p>
+        <button class="link-card__btn-delete" (click)="deleteLink(link.id)">
           <img src="assets/trash.png" alt="trash icon" />
         </button>
       </div>

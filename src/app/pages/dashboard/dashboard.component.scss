@@ -74,6 +74,13 @@
   min-width: 360px;
   margin-right: 48px;
 
+  &__img {
+    background-color: #dddddd;
+    border-radius: 50%;
+    height: 128px;
+    width: 128px;
+  }
+
   &__details {
     display: flex;
     flex-direction: column;
@@ -94,6 +101,10 @@
     display: inline-block;
     margin-bottom: 8px;
   }
+}
+
+.user-links {
+  width: 100%;
 }
 
 .link-card {
