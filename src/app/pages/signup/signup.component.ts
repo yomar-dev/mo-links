@@ -28,6 +28,7 @@ export class SignupComponent {
     const { name, email, password } = this.signupForm.value;
     this.authService.signup(name, email, password).subscribe((id) => {
       if (id) {
+        console.log('id', id);
         this.authService.userId = id;
         this.router.navigate(['/']);
       }
